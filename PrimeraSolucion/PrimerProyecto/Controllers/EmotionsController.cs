@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PrimerProyecto.Controllers
+﻿namespace PrimerProyecto.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using PrimerProyecto.Models;
+
     [Route("api/[controller]")]
     [ApiController]
     public class EmotionsController : ControllerBase
@@ -34,6 +30,18 @@ namespace PrimerProyecto.Controllers
             if (suerte == 3)
                 return "sos una persona aburrida";
             return "estoy muy ocupado, no puedo atenderte";
+        }
+        [HttpPost]
+        [Route("ConModelo")]
+        public string Emocion3([FromBody] Luck luck)
+        {
+            if (luck.LuckId == 0)
+                return "sos una persona indiferente";
+            if (luck.LuckId == 1)
+                return "sos una persona feliz";
+            if (luck.LuckId == 3)
+                return "sos una persona aburrida";
+            return "estoy ocupado, no puedo atenderte";
         }
     }
 }
